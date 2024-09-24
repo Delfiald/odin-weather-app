@@ -1,3 +1,4 @@
 import './css/style.css';
+import showWeather from './services/weatherService';
 
-console.log('Hello, World!');
+showWeather('jakarta');
