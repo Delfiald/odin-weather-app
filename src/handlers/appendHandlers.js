@@ -3,6 +3,7 @@ import loading from '../components/loading';
 import todayWeather from '../components/todayWeather';
 import weeklyWeather from '../components/weeklyWeather';
 import error from '../components/error';
+import unitToggler from '../components/unitToggler';
 
 export default (() => {
   const main = document.createElement('main')
@@ -23,6 +24,7 @@ export default (() => {
     main: () => {
       removeComponents();
       body.appendChild(main);
+      main.appendChild(unitToggler());
       main.appendChild(todayWeather());
       main.appendChild(weeklyWeather());
     },

@@ -1,5 +1,6 @@
 import carouselHandlers from "./carouselHandlers";
 import searchHandlers from "./searchHandlers";
+import unitHandlers from "./unitHandlers";
 
 export default () => {
   const body = document.querySelector('body')
@@ -16,6 +17,8 @@ export default () => {
       searchHandlers().search();
     }else if(target.closest('header .clear-btn')){
       searchHandlers().remove();
+    }else if(target.closest('.toggler-btn')){
+      unitHandlers();
     }
   })
 }
