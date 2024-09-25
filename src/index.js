@@ -2,6 +2,7 @@ import './css/style.css';
 
 import appendHandler from './handlers/appendHandlers';
 import buttonHandlers from './handlers/buttonHandlers';
+import loadContent from './handlers/loadContent';
 import showWeather from './services/weatherService';
 
 (() => {
@@ -13,6 +14,9 @@ import showWeather from './services/weatherService';
   })
 
   buttonHandlers();
+
+  // Load Content
+  loadContent();
 })()
 
 // showWeather('jakarta');

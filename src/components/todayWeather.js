@@ -28,10 +28,10 @@ const weatherDetails = () => {
   wrapper.className = 'details-wrapper';
 
   const details = {
-    wind: {className: 'wind', icon: 'fas fa-wind'},
-    humidity: {className: 'humidity', icon: 'fas fa-droplet'},
-    uvIndex: {className: 'uv-index', icon: 'fas fa-sun'},
-    cloudiness: {className: 'cloudiness', icon: 'fas fa-cloud'}
+    wind: {className: 'wind', icon: 'fas fa-wind', label: 'Wind'},
+    humidity: {className: 'humidity', icon: 'fas fa-droplet', label: 'Humidity'},
+    uvIndex: {className: 'uv-index', icon: 'fas fa-sun', label: 'UV Index'},
+    cloudiness: {className: 'visibility', icon: 'fas fa-eye', label: 'Visibility'}
   }
 
   Object.keys(details).forEach((key) => {
@@ -39,10 +39,13 @@ const weatherDetails = () => {
     content.className = details[key].className;
     const contentIcon = document.createElement('i');
     contentIcon.className = details[key].icon
+    const contentLabel = document.createElement('div');
+    contentLabel.className = 'content-label'
+    contentLabel.textContent = details[key].label
     const contentText = document.createElement('div');
-    contentText.className = 'content-text'
-    contentText.textContent = details[key].className
+    contentText.className = 'content'
     content.appendChild(contentIcon)
+    content.appendChild(contentLabel)
     content.appendChild(contentText)
     wrapper.appendChild(content);
   })
@@ -137,6 +140,27 @@ export const overviewContent = (currTemp, temp, condition, icon) => {
   tempMaxMin.textContent = temp;
   conditions.textContent = condition;
   conditionsIcon.src = icon;
+}
+
+export const detailsContent = (windValue, humidityValue, uvValue, visibilityValue, sunriseValue, sunsetValue) => {
+  const wind = document.querySelector('.details-wrapper .wind .content')
+  const humidity = document.querySelector('.details-wrapper .humidity .content')
+  const uvIndex = document.querySelector('.details-wrapper .uv-index .content')
+  const visibility = document.querySelector('.details-wrapper .visibility .content')
+  const sunrise = document.querySelector('.details-wrapper .sunrise .sunrise-value')
+  const sunset = document.querySelector('.details-wrapper .sunset .sunset-value')
+
+  wind.textContent = windValue;
+  humidity.textContent = humidityValue
+  uvIndex.textContent = uvValue
+  visibility.textContent = visibilityValue
+  sunrise.textContent = sunriseValue
+  sunset.textContent = sunsetValue
+
+  const windDirection = document.createElement('i')
+  windDirection.className = 'fas fa-arrow-up'
+  wind.appendChild(windDirection);
+
 }
 
 export default () => {
