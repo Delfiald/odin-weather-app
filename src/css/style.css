@@ -55,18 +55,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  min-height: 100vh;
-  height: 100%;
   overflow-x: hidden;
 }
 
 /* Header */
 header {
-  position: fixed;
-  top: 0;
-  width: 100vw;
   padding: 1rem;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -134,6 +129,16 @@ header {
   pointer-events: auto;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+}
+
 /* Today Weather */
 section {
   max-width: 900px;
@@ -143,7 +148,6 @@ section {
   position: relative;
   min-height: 30vh;
   overflow: hidden;
-  border: 1px solid var(--color-light-600);
 }
 
 section .weather-overview,
@@ -156,7 +160,7 @@ section .weather-details {
   transition: .25s all ease;
 }
 
-section > div.active {
+.today-weather > div.active {
   opacity: 1;
   visibility: visible;
   animation: carousel .5s ease forwards;
@@ -207,7 +211,7 @@ section .indicator-wrapper .indicator-container {
   overflow: hidden;
   border-radius: 20px;
   height: min-content;
-  margin: 1rem 0;
+  margin: .5rem 0;
 }
 
 section .indicator-wrapper .indicator-container .indicator-active {
@@ -302,7 +306,7 @@ section .indicator-wrapper .indicator-container > div:hover {
 }
 
 .details-wrapper > div {
-  padding: 1rem;
+  padding: .5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -310,14 +314,47 @@ section .indicator-wrapper .indicator-container > div:hover {
   background: var(--color-light);
   border-radius: 20px;
   height: 100%;
-  font-size: 2rem;
   cursor: pointer;
   transition: var(--transition-fast) transform ease-in-out;
   border: 1px solid var(--color-light-600);
 }
 
+.details-wrapper > div:not(.sun) {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: min-content 1fr;
+}
+
+.details-wrapper > div:not(.sun) > i {
+  grid-row: span 2;
+  font-size: 2rem;
+}
+
+.details-wrapper > div:not(.sun) > .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details-wrapper .wind .content {
+  flex-direction: row-reverse;
+  justify-content: space-between !important;
+}
+
+.details-wrapper .wind .content i {
+  font-size: 1.5rem;
+}
+
 .details-wrapper > div:hover {
   transform: scale(1.025);
+}
+
+.details-wrapper .uv-index .content {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  color: var(--color-light);
+  background: red;
 }
 
 .details-wrapper .sun {
@@ -397,6 +434,64 @@ section .indicator-wrapper .indicator-container > div:hover {
 
 .details-wrapper .sun > div > .sunset > div {
   align-self: flex-end;
+}
+
+/* Weekly Weather */
+.weekly-weather {
+  max-width: 700px;
+  border: 1px solid var(--color-light-600);
+}
+
+.weekly-wrapper {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.weekly-wrapper .day-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--color-light-600);
+  border-radius: 15px;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.weekly-wrapper .day-wrapper .day-name {
+  flex-basis: 50%;
+}
+
+.weekly-wrapper .day-wrapper .icons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.weekly-wrapper .day-wrapper .icons-wrapper > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.weekly-wrapper .day-wrapper .icons-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.weekly-wrapper .day-wrapper .temp-wrapper {
+  flex-basis: 5%;
+  display: flex;
+  gap: 1rem;
 }
 
 @keyframes slide-left-show {

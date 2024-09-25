@@ -1,11 +1,12 @@
-import header, { headerContent } from '../components/header';
-import todayWeather, { overviewContent } from '../components/todayWeather';
+import header from '../components/header';
+import todayWeather from '../components/todayWeather';
+import weeklyWeather from '../components/weeklyWeather';
 
 export default () => {
+  const main = document.createElement('main')
   const body = document.querySelector('body');
   body.appendChild(header());
-  body.appendChild(todayWeather());
-
-  headerContent('Jakarta');
-  overviewContent('21', '26 / 19', 'Partly Cloudy', '')
+  main.appendChild(todayWeather());
+  main.appendChild(weeklyWeather());
+  body.appendChild(main);
 };
