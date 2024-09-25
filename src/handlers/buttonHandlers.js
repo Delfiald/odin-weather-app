@@ -17,7 +17,7 @@ export default () => {
       searchHandlers().search();
     }else if(target.closest('header .clear-btn')){
       searchHandlers().remove();
-    }else if(target.closest('.toggler-btn')){
+    }else if(target.closest('.toggler-wrapper')){
       unitHandlers();
     }
   })

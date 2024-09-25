@@ -14,6 +14,13 @@ const currentWeatherData = (() => {
   }
 })()
 
+const contentUnits = (unit) => {
+  if(unit === 'us'){
+    return {'temp-unit': 'F', 'distance-unit': 'miles'}
+  }
+  return {'temp-unit': 'C', 'distance-unit': 'km'}
+}
+
 export default async (weatherData) => {
   const dayWrapperList = document.querySelectorAll('.day-wrapper');
 
@@ -24,12 +31,14 @@ export default async (weatherData) => {
   const unit = getCurrentUnit();
   const data = currentWeatherData.getWeatherData()[unit];
 
+  const units = contentUnits(unit);
+
   headerContent(data.resolvedAddress);
   overviewContent(
-    data.days[0].temp,
-    `${data.days[0].tempmax}°F / ${data.days[0].tempmin}°F`,
+    `${data.days[0].temp}°${units['temp-unit']}`,
+    `${data.days[0].tempmax}°${units['temp-unit']} / ${data.days[0].tempmin}°${units['temp-unit']}`,
     data.days[0].conditions,
-    ''
+    '',
   );
 
   detailsContent(
@@ -39,10 +48,11 @@ export default async (weatherData) => {
     data.days[0].visibility,
     data.days[0].sunrise,
     data.days[0].sunset,
-    data.days[0].winddir
+    data.days[0].winddir,
+    units
   );
 
   for (let i = 0; i < dayWrapperList.length; i += 1) {
-    weeklyContent(dayWrapperList[i], data.days[i]);
+    weeklyContent(dayWrapperList[i], data.days[i], units);
   }
 };
