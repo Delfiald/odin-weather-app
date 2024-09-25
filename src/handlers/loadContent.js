@@ -2,30 +2,27 @@ import { headerContent } from '../components/header';
 import { overviewContent, detailsContent } from '../components/todayWeather';
 import { weeklyContent } from '../components/weeklyWeather';
 
-export default () => {
+export default async (weatherData) => {
   const dayWrapperList = document.querySelectorAll('.day-wrapper');
-  const data = {
-    city: 'Jakarta',
-    temp: `21°`,
-    tempMax: `26°`,
-    tempMin: `19°`,
-    condition: `Partly Cloudy`,
-    icon: ``,
-    wind: '8km / h',
-    windDir: 45,
-    humidity: '90',
-    'uv-index': 2,
-    visibility: '20 km',
-    sunrise: '6.00 am',
-    sunset: '6.20 pm'
-  }
-  
-  headerContent(data.city);
-  overviewContent(data.temp, `${data.tempMax}/${data.tempMin}`, data.condition, data.icon)
 
-  detailsContent(data.wind, data.humidity, data['uv-index'], data.visibility, data.sunrise, data.sunset)
+  headerContent(weatherData.resolvedAddress);
+  overviewContent(
+    weatherData.days[0].temp,
+    `${weatherData.days[0].tempmax}/${weatherData.days[0].tempmin}`,
+    weatherData.days[0].conditions,
+    ''
+  );
 
-  for(let i = 0; i < dayWrapperList.length; i += 1) {
-    weeklyContent(dayWrapperList[i]);
+  detailsContent(
+    weatherData.days[0].windspeed,
+    weatherData.days[0].humidity,
+    weatherData.days[0].uvindex,
+    weatherData.days[0].visibility,
+    weatherData.days[0].sunrise,
+    weatherData.days[0].sunset
+  );
+
+  for (let i = 0; i < dayWrapperList.length; i += 1) {
+    weeklyContent(dayWrapperList[i], weatherData.days[i]);
   }
-}
+};

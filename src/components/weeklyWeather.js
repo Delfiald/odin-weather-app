@@ -49,7 +49,7 @@ const createSection = () => {
   return section;
 }
 
-export const weeklyContent = (dayWrapper) => {
+export const weeklyContent = (dayWrapper, weatherData) => {
   const dayName = dayWrapper.querySelector('.day-name');
   const icon1 = dayWrapper.querySelector('.icon-1 img');
   const icon2 = dayWrapper.querySelector('.icon-2 img');
@@ -59,8 +59,8 @@ export const weeklyContent = (dayWrapper) => {
   dayName.textContent = 'Today';
   icon1.src = ''
   icon2.src = ''
-  tempMax.textContent = '26°'
-  tempMin.textContent = '19°'
+  tempMax.textContent = `${weatherData.tempmax}°`
+  tempMin.textContent = `${weatherData.tempmin}°`
 }
 
 export default () => {

@@ -136,7 +136,7 @@ export const overviewContent = (currTemp, temp, condition, icon) => {
   const conditions = document.querySelector('.conditions')
   const conditionsIcon = document.querySelector('.conditions-icon img')
 
-  currentTemp.textContent = currTemp;
+  currentTemp.textContent = `${currTemp}°F`;
   tempMaxMin.textContent = temp;
   conditions.textContent = condition;
   conditionsIcon.src = icon;
