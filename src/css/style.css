@@ -553,6 +553,57 @@ section .indicator-wrapper .indicator-container > div:hover {
   font-size: 5rem;
 }
 
+/* Unit Toggler */
+.unit-toggler {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.toggler-wrapper {
+  width: 100px;
+  position: relative;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  border-radius: 20px;
+  border: 1px solid var(--color-dark-600);
+  overflow: hidden;
+  transition: var(--transition-slow) all ease;
+  cursor: pointer;
+}
+
+.toggler-wrapper.metric {
+  justify-content: flex-start;
+}
+
+.toggler-wrapper .toggler-btn {
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: var(--color-dark-600);
+  color: var(--color-light);
+  transition: var(--transition-medium) all ease;
+  z-index: 1;
+}
+
+.toggler-wrapper .toggler-btn {
+  left: 0;
+}
+
+.toggler-wrapper.metric .toggler-btn {
+  left: calc(100% - 2rem);
+}
+
 @keyframes slide-left-show {
   0% {
     transform: translateX(100%);
