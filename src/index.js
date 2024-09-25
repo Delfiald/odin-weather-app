@@ -7,7 +7,7 @@ import showWeather from './services/weatherService';
 
 (async () => {
   // Load Content
-  try{
+  try {
     appendHandlers.loading();
     const weatherData = await showWeather('Jakarta');
     appendHandlers.loadHeader();
@@ -17,10 +17,10 @@ import showWeather from './services/weatherService';
     const searchIcon = document.querySelector('.search-wrapper label');
     searchIcon.addEventListener('click', () => {
       searchIcon.parentElement.classList.toggle('open');
-    })
+    });
 
     buttonHandlers();
-  }catch(error){
+  } catch (error) {
     appendHandlers.error(error);
   }
-})()
+})();

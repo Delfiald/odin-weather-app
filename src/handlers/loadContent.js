@@ -8,7 +8,7 @@ export default async (weatherData) => {
   headerContent(weatherData.resolvedAddress);
   overviewContent(
     weatherData.days[0].temp,
-    `${weatherData.days[0].tempmax}/${weatherData.days[0].tempmin}`,
+    `${weatherData.days[0].tempmax}°F / ${weatherData.days[0].tempmin}°F`,
     weatherData.days[0].conditions,
     ''
   );
@@ -19,7 +19,8 @@ export default async (weatherData) => {
     weatherData.days[0].uvindex,
     weatherData.days[0].visibility,
     weatherData.days[0].sunrise,
-    weatherData.days[0].sunset
+    weatherData.days[0].sunset,
+    weatherData.days[0].winddir
   );
 
   for (let i = 0; i < dayWrapperList.length; i += 1) {

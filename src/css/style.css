@@ -460,7 +460,8 @@ section .indicator-wrapper .indicator-container > div:hover {
   padding: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
-  grid-template-columns: 1fr 1fr .5fr;
+  gap: 1rem;
+  grid-template-columns: 1fr .5fr .5fr;
 }
 
 .weekly-wrapper .day-wrapper .day-name {
