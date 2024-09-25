@@ -9,7 +9,7 @@ export default () => {
       carouselHandlers().previous();
     }else if(target.closest('.next-btn')){
       carouselHandlers().next();
-    }else if(target.closest('.indicator-wrapper > div')){
+    }else if(target.closest('.indicator-container > .indicator')){
       carouselHandlers().indicator(e);
     }
   })

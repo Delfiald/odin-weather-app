@@ -1,5 +1,5 @@
 import header, { headerContent } from '../components/header';
-import todayWeather from '../components/todayWeather';
+import todayWeather, { overviewContent } from '../components/todayWeather';
 
 export default () => {
   const body = document.querySelector('body');
@@ -7,4 +7,5 @@ export default () => {
   body.appendChild(todayWeather());
 
   headerContent('Jakarta');
+  overviewContent('21', '26 / 19', 'Partly Cloudy', '')
 };

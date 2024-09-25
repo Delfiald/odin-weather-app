@@ -89,7 +89,7 @@ const createSection = () => {
   const section = document.createElement('section');
   section.className = 'today-weather';
   const overview = document.createElement('div');
-  overview.className = 'weather-overview'
+  overview.className = 'weather-overview active'
   const details = document.createElement('div');
   details.className = 'weather-details'
 
@@ -103,15 +103,23 @@ const createSection = () => {
 
   // Controls
   const arrowRight = document.createElement('i');
-  arrowRight.className = 'fas fa-chevron-right next-btn'
+  arrowRight.className = 'fas fa-chevron-right next-btn show'
   const arrowLeft = document.createElement('i');
   arrowLeft.className = 'fas fa-chevron-left previous-btn'
   const indicatorWrapper = document.createElement('div');
   indicatorWrapper.className = 'indicator-wrapper';
+  const indicatorContainer = document.createElement('div');
+  indicatorContainer.className = 'indicator-container';
   const indicator1 = document.createElement('div');
+  indicator1.className = 'indicator active'
   const indicator2 = document.createElement('div');
-  indicatorWrapper.appendChild(indicator1)
-  indicatorWrapper.appendChild(indicator2)
+  indicator2.className = 'indicator'
+  const indicatorActive = document.createElement('div');
+  indicatorActive.className = 'indicator-active'
+  indicatorContainer.appendChild(indicator1)
+  indicatorContainer.appendChild(indicator2)
+  indicatorContainer.appendChild(indicatorActive)
+  indicatorWrapper.appendChild(indicatorContainer)
   section.appendChild(arrowLeft)
   section.appendChild(arrowRight)
   section.appendChild(indicatorWrapper)
@@ -119,8 +127,16 @@ const createSection = () => {
   return section
 }
 
-export const overviewContent = () => {
+export const overviewContent = (currTemp, temp, condition, icon) => {
+  const currentTemp = document.querySelector('.current-temp')
+  const tempMaxMin = document.querySelector('.temp-max-min')
+  const conditions = document.querySelector('.conditions')
+  const conditionsIcon = document.querySelector('.conditions-icon img')
 
+  currentTemp.textContent = currTemp;
+  tempMaxMin.textContent = temp;
+  conditions.textContent = condition;
+  conditionsIcon.src = icon;
 }
 
 export default () => {

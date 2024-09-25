@@ -13,9 +13,6 @@ import showWeather from './services/weatherService';
   })
 
   buttonHandlers();
-
-  document.querySelector('.weather-overview').classList.add('active');
-  document.querySelector('.indicator-wrapper > div').classList.add('active');
 })()
 
 // showWeather('jakarta');
