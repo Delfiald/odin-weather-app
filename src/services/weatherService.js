@@ -1,11 +1,22 @@
 import getWeather from '../api/weather';
 
+class WeatherData {
+  constructor (data){
+    this.data = {...data};
+  }
+
+  getData() {
+    return this.data;
+  }
+}
+
 const showWeather = async (city) => {
   try {
     const data = await getWeather(city);
-    console.log(`${data}`);
+    const weather = new WeatherData(data);
+    return weather.getData();
   } catch (error) {
-    console.error(error);
+    throw new Error(error)
   }
 };
 

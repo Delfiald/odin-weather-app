@@ -136,13 +136,13 @@ export const overviewContent = (currTemp, temp, condition, icon) => {
   const conditions = document.querySelector('.conditions')
   const conditionsIcon = document.querySelector('.conditions-icon img')
 
-  currentTemp.textContent = currTemp;
+  currentTemp.textContent = `${currTemp}°F`;
   tempMaxMin.textContent = temp;
   conditions.textContent = condition;
   conditionsIcon.src = icon;
 }
 
-export const detailsContent = (windValue, humidityValue, uvValue, visibilityValue, sunriseValue, sunsetValue) => {
+export const detailsContent = (windValue, humidityValue, uvValue, visibilityValue, sunriseValue, sunsetValue, windDir) => {
   const wind = document.querySelector('.details-wrapper .wind .content')
   const humidity = document.querySelector('.details-wrapper .humidity .content')
   const uvIndex = document.querySelector('.details-wrapper .uv-index .content')
@@ -150,15 +150,16 @@ export const detailsContent = (windValue, humidityValue, uvValue, visibilityValu
   const sunrise = document.querySelector('.details-wrapper .sunrise .sunrise-value')
   const sunset = document.querySelector('.details-wrapper .sunset .sunset-value')
 
-  wind.textContent = windValue;
-  humidity.textContent = humidityValue
+  wind.textContent = `${windValue} miles/h`;
+  humidity.textContent = `${humidityValue} %`
   uvIndex.textContent = uvValue
-  visibility.textContent = visibilityValue
+  visibility.textContent = `${visibilityValue} miles`
   sunrise.textContent = sunriseValue
   sunset.textContent = sunsetValue
 
   const windDirection = document.createElement('i')
   windDirection.className = 'fas fa-arrow-up'
+  windDirection.style.transform = `rotate(${windDir}deg)`
   wind.appendChild(windDirection);
 
 }

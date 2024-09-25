@@ -1,4 +1,5 @@
 import carouselHandlers from "./carouselHandlers";
+import searchHandlers from "./searchHandlers";
 
 export default () => {
   const body = document.querySelector('body')
@@ -11,6 +12,10 @@ export default () => {
       carouselHandlers().next();
     }else if(target.closest('.indicator-container > .indicator')){
       carouselHandlers().indicator(e);
+    }else if(target.closest('#search-btn')){
+      searchHandlers().search();
+    }else if(target.closest('header .clear-btn')){
+      searchHandlers().remove();
     }
   })
 }

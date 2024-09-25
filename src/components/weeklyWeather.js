@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import {isToday, format} from 'date-fns';
+
 const createDay = () => {
   const dayWrapper = document.createElement('div')
   dayWrapper.className = 'day-wrapper'
@@ -49,18 +52,24 @@ const createSection = () => {
   return section;
 }
 
-export const weeklyContent = (dayWrapper) => {
+export const weeklyContent = (dayWrapper, weatherData) => {
   const dayName = dayWrapper.querySelector('.day-name');
   const icon1 = dayWrapper.querySelector('.icon-1 img');
   const icon2 = dayWrapper.querySelector('.icon-2 img');
   const tempMax = dayWrapper.querySelector('.temp-max')
   const tempMin = dayWrapper.querySelector('.temp-min')
 
-  dayName.textContent = 'Today';
+  const getDay = weatherData.datetime;
+  if(isToday(getDay)){
+    dayName.textContent = 'Today';
+  }else{
+    dayName.textContent = format(getDay, 'EEEE');
+  }
+
   icon1.src = ''
   icon2.src = ''
-  tempMax.textContent = '26°'
-  tempMin.textContent = '19°'
+  tempMax.textContent = `${weatherData.tempmax}°F`
+  tempMin.textContent = `${weatherData.tempmin}°F`
 }
 
 export default () => {
