@@ -2,6 +2,7 @@ import { headerContent } from '../components/header';
 import { overviewContent, detailsContent } from '../components/todayWeather';
 import { weeklyContent } from '../components/weeklyWeather';
 import { getCurrentUnit } from './unitHandlers';
+import iconMap from '../utils/iconsLoader';
 
 const currentWeatherData = (() => {
   let currentData = null;
@@ -38,7 +39,7 @@ export default async (weatherData) => {
     `${data.days[0].temp}°${units['temp-unit']}`,
     `${data.days[0].tempmax}°${units['temp-unit']} / ${data.days[0].tempmin}°${units['temp-unit']}`,
     data.days[0].conditions,
-    '',
+    iconMap[data.days[0].icon],
   );
 
   detailsContent(

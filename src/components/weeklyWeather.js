@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {isToday, format} from 'date-fns';
+import iconMap from '../utils/iconsLoader';
 
 const createDay = () => {
   const dayWrapper = document.createElement('div')
@@ -11,15 +12,10 @@ const createDay = () => {
   const conditionIcons = document.createElement('div')
   conditionIcons.className = 'icons-wrapper'
   const icon1Wrapper = document.createElement('div')
-  icon1Wrapper.className = 'icon-1'
-  const icon1 = document.createElement('img')
-  icon1Wrapper.appendChild(icon1)
-  const icon2Wrapper = document.createElement('div')
-  icon2Wrapper.className = 'icon-2'
-  const icon2 = document.createElement('img')
-  icon2Wrapper.appendChild(icon2)
+  icon1Wrapper.className = 'icon'
+  const icon = document.createElement('img')
+  icon1Wrapper.appendChild(icon)
   conditionIcons.appendChild(icon1Wrapper)
-  conditionIcons.appendChild(icon2Wrapper)
 
   const tempWrapper = document.createElement('div')
   tempWrapper.className = 'temp-wrapper'
@@ -54,8 +50,7 @@ const createSection = () => {
 
 export const weeklyContent = (dayWrapper, weatherData, units) => {
   const dayName = dayWrapper.querySelector('.day-name');
-  const icon1 = dayWrapper.querySelector('.icon-1 img');
-  const icon2 = dayWrapper.querySelector('.icon-2 img');
+  const icon = dayWrapper.querySelector('.icon img');
   const tempMax = dayWrapper.querySelector('.temp-max')
   const tempMin = dayWrapper.querySelector('.temp-min')
 
@@ -66,8 +61,7 @@ export const weeklyContent = (dayWrapper, weatherData, units) => {
     dayName.textContent = format(getDay, 'EEEE');
   }
 
-  icon1.src = ''
-  icon2.src = ''
+  icon.src = iconMap[weatherData.icon]
   tempMax.textContent = `${weatherData.tempmax}°${units['temp-unit']}`
   tempMin.textContent = `${weatherData.tempmin}°${units['temp-unit']}`
 }
