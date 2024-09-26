@@ -3,6 +3,7 @@ import { overviewContent, detailsContent } from '../components/todayWeather';
 import { weeklyContent } from '../components/weeklyWeather';
 import { getCurrentUnit } from './unitHandlers';
 import iconMap from '../utils/iconsLoader';
+import backgroundHandlers from './backgroundHandlers';
 
 const currentWeatherData = (() => {
   let currentData = null;
@@ -56,4 +57,6 @@ export default async (weatherData) => {
   for (let i = 0; i < dayWrapperList.length; i += 1) {
     weeklyContent(dayWrapperList[i], data.days[i], units);
   }
+
+  backgroundHandlers(data.days[0].icon)
 };
