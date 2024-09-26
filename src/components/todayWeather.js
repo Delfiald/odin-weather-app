@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { format } from "date-fns";
+
 const weatherOverview = () => {
   const wrapper = document.createElement('div');
   wrapper.className = 'overview-wrapper';
@@ -142,6 +145,32 @@ export const overviewContent = (currTemp, temp, condition, icon) => {
   conditionsIcon.src = icon;
 }
 
+const uvIndexBackground = (index) => {
+  let backgroundColor = 'purple';
+  if(index <= 2) {
+    backgroundColor = 'green';
+  }else if(index <= 5) {
+    backgroundColor = 'green';
+  }else if(index <= 7) {
+    backgroundColor = 'orange';
+  }else if(index <= 10) {
+    backgroundColor = 'red';
+  }
+  return backgroundColor;
+}
+
+const hourFormat = (timeString) => {
+  const [hours, minutes] = timeString.split(':');
+
+  const date = new Date();
+  date.setHours(hours);
+  date.setMinutes(minutes);
+
+  const formattedTime  = format(date, 'hh:mm a')
+
+  return formattedTime
+}
+
 export const detailsContent = (windValue, humidityValue, uvValue, visibilityValue, sunriseValue, sunsetValue, windDir, units) => {
   const wind = document.querySelector('.details-wrapper .wind .content')
   const humidity = document.querySelector('.details-wrapper .humidity .content')
@@ -150,18 +179,23 @@ export const detailsContent = (windValue, humidityValue, uvValue, visibilityValu
   const sunrise = document.querySelector('.details-wrapper .sunrise .sunrise-value')
   const sunset = document.querySelector('.details-wrapper .sunset .sunset-value')
 
+  const formattedSunrise = hourFormat(sunriseValue);
+  const formattedSunset = hourFormat(sunsetValue);
+
   wind.textContent = `${windValue} ${units['distance-unit']} / h`;
   humidity.textContent = `${humidityValue} %`
   uvIndex.textContent = uvValue
   visibility.textContent = `${visibilityValue} ${units['distance-unit']}`
-  sunrise.textContent = sunriseValue
-  sunset.textContent = sunsetValue
+  sunrise.textContent = `${formattedSunrise}`
+  sunset.textContent = `${formattedSunset}`
 
   const windDirection = document.createElement('i')
   windDirection.className = 'fas fa-arrow-up'
   windDirection.style.transform = `rotate(${windDir}deg)`
   wind.appendChild(windDirection);
 
+  const background = uvIndexBackground(uvValue)
+  uvIndex.style.background = background;
 }
 
 export default () => {
