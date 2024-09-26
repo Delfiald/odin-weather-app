@@ -12,6 +12,141 @@
   --transition-fast: .2s;
   --transition-medium: .3s;
   --transition-slow: .5s;
+
+  --background-color: var(--color-light);
+  --text-color: var(--color-dark);
+}
+
+:root.clear-day {
+  --background-color: #87CEEB;
+  --text-color: var(--color-light);
+  --image-light: invert(1) brightness(2);
+}
+
+:root.clear-night {
+  --background-color: #1C1C3C;
+  --text-color: var(--color-light);
+  --image-light: invert(1) brightness(2);
+}
+
+:root.cloudy {
+  --background-color: #B0BEC5;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.fog {
+  --background-color: #DDE2E6;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.hail {
+  --background-color: #A9A9A9;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.partly-cloudy-day {
+  --background-color: #ADD8E6;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.partly-cloudy-night {
+  --background-color: #2F4F4F;
+  --text-color: var(--color-light);
+  --image-light: invert(1) brightness(2);
+}
+
+:root.rain-snow-showers-day {
+  --background-color: #6B8E94;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.rain-snow-showers-night {
+  --background-color: #4B5D67;
+  --text-color: var(--color-light);
+  --image-light: invert(1) brightness(2);
+}
+
+:root.rain-snow {
+  --background-color: #7E8B8C;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.rain {
+  --background-color: #708090;
+  --text-color: var(--color-light);
+  --image-light: invert(1) brightness(2);
+}
+
+:root.showers-day {
+  --background-color: #9CAFB7;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.showers-night {
+  --background-color: #495D63;
+  --text-color: var(--color-light);
+  --image-light: invert(1) brightness(2);
+}
+
+:root.sleet {
+  --background-color: #889899;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.snow-showers-day {
+  --background-color: #D3E5F1;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.snow-showers-night {
+  --background-color: #A9BDC9;
+  --text-color: var(--color-light);
+  --image-light: invert(1) brightness(2);
+}
+
+:root.snow {
+  --background-color: #E0E9F0;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.thunder-rain {
+  --background-color: #4A5D73;
+  --text-color: var(--color-light);
+  --image-light: invert(1) brightness(2);
+}
+
+:root.thunder-showers-day {
+  --background-color: #7B8899;
+  --text-color: var(--color-dark);
+  --image-light: none;
+}
+
+:root.thunder-showers-night {
+  --background-color: #48525B;
+  --text-color: var(--color-light);
+  --image-light: invert(1) brightness(2);
+}
+
+:root.thunder {
+  --background-color: #374754;
+  --text-color: var(--color-light);
+  --image-light: invert(1) brightness(2);
+}
+
+:root.wind {
+  --background-color: #9EAAB0;
+  --text-color: var(--color-dark);
+  --image-light: none;
 }
 
 * {
@@ -22,17 +157,21 @@
 
 /* Utilities */
 input {
-  border-radius: 5px;
   border: none;
   outline: none;
   padding: .5rem 1rem;
   font-family: inherit;
-  color: var(--color-dark);
+  color: var(--text-color);
+  background: transparent;
+}
+
+input::placeholder {
+  color: var(--text-color);
 }
 
 .btn {
   padding: .5rem 1rem;
-  border: 1px solid var(--color-dark-400);
+  border: 1px solid var(--text-color);
   border-radius: 10px;
   cursor: pointer;
   display: flex;
@@ -43,11 +182,17 @@ input {
 }
 
 .btn:hover {
+  border: 1px solid var(--background-color);
   background: var(--color-dark);
   color: var(--color-light);
 }
 
+img {
+  filter: var(--image-light);
+}
+
 body {
+  position: relative;
   font-family: 'News Cycle', sans-serif;
   line-height: 1.6;
   font-size: 1rem;
@@ -56,6 +201,24 @@ body {
   align-items: center;
   justify-content: center;
   overflow-x: hidden;
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: var(--transition-slow) background .5s ease, var(--transition-slow) .25s color ease;
+  animation: none;
+}
+
+:root.thunder-rain .background-effects,
+:root.thunder-showers-day .background-effects,
+:root.thunder-showers-night .background-effects,
+:root.thunder .background-effects {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--background-color);
+  z-index: -1;
+  animation: lightningFlash 3s infinite ease-in-out, delayAnimation 10s infinite;
 }
 
 /* Header */
@@ -102,7 +265,7 @@ header {
   bottom: 0;
   width: 0%;
   height: 1px;
-  background: var(--color-dark-400);
+  background: var(--text-color);
   transition: var(--transition-medium) all .15s ease;
 }
 
@@ -120,7 +283,7 @@ header {
   visibility: hidden;
   cursor: pointer;
   font-size: .85rem;
-  color: var(--color-dark-600);
+  color: var(--text-color);
 }
 
 .search-wrapper input:not(:placeholder-shown) ~ .clear-btn {
@@ -311,12 +474,12 @@ section .indicator-wrapper .indicator-container > div:hover {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background: var(--color-light);
+  background: transparent;
   border-radius: 20px;
   height: 100%;
   cursor: pointer;
   transition: var(--transition-fast) transform ease-in-out;
-  border: 1px solid var(--color-light-600);
+  border: 1px solid var(--text-color);
 }
 
 .details-wrapper > div:not(.sun) {
@@ -384,7 +547,7 @@ section .indicator-wrapper .indicator-container > div:hover {
   width: calc(100% - 1.75rem);
   border-radius: 50%;
   height: 300px;
-  border: 1px solid darkgoldenrod;
+  border: 1px solid var(--text-color);
 }
 
 .details-wrapper .sun > div > div {
@@ -395,7 +558,7 @@ section .indicator-wrapper .indicator-container > div:hover {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background: var(--color-light);
+  background: var(--background-color);
   z-index: 1;
 }
 
@@ -405,7 +568,7 @@ section .indicator-wrapper .indicator-container > div:hover {
   position: absolute;
   width: 100%;
   height: 1px;
-  background: var(--color-dark);
+  background: var(--text-color);
   z-index: -1;
 }
 
@@ -439,7 +602,9 @@ section .indicator-wrapper .indicator-container > div:hover {
 /* Weekly Weather */
 .weekly-weather {
   max-width: 700px;
-  border: 1px solid var(--color-light-600);
+  border: 1px solid;
+  border-color: var(--text-color);
+  transition: var(--transition-slow) border-color .25s ease
 }
 
 .weekly-wrapper {
@@ -455,13 +620,15 @@ section .indicator-wrapper .indicator-container > div:hover {
   width: 100%;
   display: grid;
   align-items: center;
-  border: 1px solid var(--color-light-600);
   border-radius: 15px;
   padding: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
   gap: 1rem;
   grid-template-columns: 1fr .5fr .5fr;
+  border: 1px solid;
+  border-color: var(--text-color);
+  transition: var(--transition-slow) border-color .25s ease
 }
 
 .weekly-wrapper .day-wrapper .day-name {
@@ -526,7 +693,7 @@ section .indicator-wrapper .indicator-container > div:hover {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: conic-gradient(var(--color-dark-600) 90%, var(--color-light) 0);
+  background: conic-gradient(var(--text-color) 90%, var(--background-color) 0);
   animation: loading-rotate 1s linear infinite;
   opacity: .75;
 }
@@ -540,7 +707,7 @@ section .indicator-wrapper .indicator-container > div:hover {
   height: 2rem;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: var(--color-light);
+  background: var(--background-color);
 }
 
 /* Error */
@@ -571,7 +738,7 @@ section .indicator-wrapper .indicator-container > div:hover {
   justify-content: flex-end;
   gap: 1rem;
   border-radius: 20px;
-  border: 1px solid var(--color-dark-600);
+  border: 1px solid var(--text-color);
   overflow: hidden;
   transition: var(--transition-slow) all ease;
   cursor: pointer;
@@ -701,5 +868,30 @@ section .indicator-wrapper .indicator-container > div:hover {
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes lightningFlash {
+  0%, 91%, 100% {
+    background: var(--background-color);
+  }
+  92%, 93% {
+    background: var(--color-light);
+  }
+  94% {
+    background: var(--color-light-400);
+  }
+  95%, 99% {
+    background: var(--color-light-600);
+  }
+}
+
+@keyframes delayAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

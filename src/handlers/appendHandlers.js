@@ -7,6 +7,8 @@ import unitToggler from '../components/unitToggler';
 
 export default (() => {
   const main = document.createElement('main')
+  const backgroundEffects = document.createElement('div')
+  backgroundEffects.className = 'background-effects'
   const body = document.querySelector('body');
   
   const removeComponents = () => {
@@ -27,6 +29,7 @@ export default (() => {
       main.appendChild(unitToggler());
       main.appendChild(todayWeather());
       main.appendChild(weeklyWeather());
+      main.appendChild(backgroundEffects)
     },
     loading: () => {
       removeComponents();
