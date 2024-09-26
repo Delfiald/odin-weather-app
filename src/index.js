@@ -14,11 +14,6 @@ import showWeather from './services/weatherService';
     appendHandlers.main();
     loadContent(weatherData);
 
-    const searchIcon = document.querySelector('.search-wrapper label');
-    searchIcon.addEventListener('click', () => {
-      searchIcon.parentElement.classList.toggle('open');
-    });
-
     buttonHandlers();
   } catch (error) {
     appendHandlers.error(error);
