@@ -1,9 +1,9 @@
 import getWeather from '../api/weather';
 
 class WeatherData {
-  constructor (dataUs, dataMetric){
-    this.dataUs = {...dataUs};
-    this.dataMetric = {...dataMetric};
+  constructor(dataUs, dataMetric) {
+    this.dataUs = { ...dataUs };
+    this.dataMetric = { ...dataMetric };
   }
 
   getDataUS() {
@@ -19,9 +19,9 @@ const showWeather = async (city) => {
   try {
     const data = await getWeather(city);
     const weather = new WeatherData(data.us, data.metric);
-    return {us: weather.getDataUS(), metric: weather.getDataMetric()};
+    return { us: weather.getDataUS(), metric: weather.getDataMetric() };
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
 };
 

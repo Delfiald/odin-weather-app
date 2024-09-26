@@ -6,18 +6,18 @@ import error from '../components/error';
 import unitToggler from '../components/unitToggler';
 
 export default (() => {
-  const main = document.createElement('main')
-  const backgroundEffects = document.createElement('div')
-  backgroundEffects.className = 'background-effects'
+  const main = document.createElement('main');
+  const backgroundEffects = document.createElement('div');
+  backgroundEffects.className = 'background-effects';
   const body = document.querySelector('body');
-  
+
   const removeComponents = () => {
     const city = document.querySelector('header h1');
-    if(city) {
-      city.textContent = ''
+    if (city) {
+      city.textContent = '';
     }
     main.textContent = '';
-  }
+  };
 
   return {
     loadHeader: () => {
@@ -29,7 +29,7 @@ export default (() => {
       main.appendChild(unitToggler());
       main.appendChild(todayWeather());
       main.appendChild(weeklyWeather());
-      main.appendChild(backgroundEffects)
+      main.appendChild(backgroundEffects);
     },
     loading: () => {
       removeComponents();
@@ -40,6 +40,6 @@ export default (() => {
       removeComponents();
       body.appendChild(main);
       main.appendChild(error(errorCode));
-    }
-  }
+    },
+  };
 })();

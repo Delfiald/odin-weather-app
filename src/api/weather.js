@@ -6,12 +6,12 @@ const getWeather = async (city) => {
   try {
     const [responseUS, responseMetric] = await Promise.all([
       fetch(urlUS, { mode: 'cors' }),
-      fetch(urlMetric, { mode: 'cors' })
-    ])
-    
+      fetch(urlMetric, { mode: 'cors' }),
+    ]);
+
     const weatherDataUS = await responseUS.json();
     const weatherDataMetric = await responseMetric.json();
-    return {us: weatherDataUS, metric: weatherDataMetric};
+    return { us: weatherDataUS, metric: weatherDataMetric };
   } catch (error) {
     throw new Error(`Failed to Fetch Data ${error.message}`);
   }

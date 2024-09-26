@@ -13,21 +13,21 @@ const currentWeatherData = (() => {
       currentData = data;
     },
     getWeatherData: () => currentData,
-  }
-})()
+  };
+})();
 
 const contentUnits = (unit) => {
-  if(unit === 'us'){
-    return {'temp-unit': 'F', 'distance-unit': 'miles'}
+  if (unit === 'us') {
+    return { 'temp-unit': 'F', 'distance-unit': 'miles' };
   }
-  return {'temp-unit': 'C', 'distance-unit': 'km'}
-}
+  return { 'temp-unit': 'C', 'distance-unit': 'km' };
+};
 
 export default async (weatherData) => {
   const dayWrapperList = document.querySelectorAll('.day-wrapper');
 
-  if(weatherData){
-    currentWeatherData.setWeatherData(weatherData)
+  if (weatherData) {
+    currentWeatherData.setWeatherData(weatherData);
   }
 
   const unit = getCurrentUnit();
@@ -40,7 +40,7 @@ export default async (weatherData) => {
     `${data.days[0].temp}°${units['temp-unit']}`,
     `${data.days[0].tempmax}°${units['temp-unit']} / ${data.days[0].tempmin}°${units['temp-unit']}`,
     data.days[0].conditions,
-    iconMap[data.days[0].icon],
+    iconMap[data.days[0].icon]
   );
 
   detailsContent(
@@ -58,5 +58,5 @@ export default async (weatherData) => {
     weeklyContent(dayWrapperList[i], data.days[i], units);
   }
 
-  backgroundHandlers(data.days[0].icon)
+  backgroundHandlers(data.days[0].icon);
 };

@@ -7,11 +7,11 @@ export default (errorCode) => {
   const errorIcon = document.createElement('i');
   errorIcon.className = 'fas fa-cloud-bolt';
   const errorText = document.createElement('div');
-  errorText.textContent = errorCode
+  errorText.textContent = errorCode;
 
-  errorWrapper.appendChild(errorIcon)
-  errorWrapper.appendChild(errorText)
+  errorWrapper.appendChild(errorIcon);
+  errorWrapper.appendChild(errorText);
 
-  errorScreen.appendChild(errorWrapper)
-  return errorScreen
-}
+  errorScreen.appendChild(errorWrapper);
+  return errorScreen;
+};

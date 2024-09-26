@@ -41,7 +41,7 @@ const createHeader = () => {
 
 export const headerContent = (city) => {
   document.querySelector('header h1').textContent = city;
-}
+};
 
 export default () => {
   const header = createHeader();

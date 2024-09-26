@@ -7,11 +7,11 @@ export default () => {
   const loadingIcon = document.createElement('i');
   loadingIcon.className = 'fas fa-cloud';
   const loadingCircle = document.createElement('div');
-  loadingCircle.className = 'loading-circle'
+  loadingCircle.className = 'loading-circle';
 
-  loadingWrapper.appendChild(loadingIcon)
-  loadingWrapper.appendChild(loadingCircle)
+  loadingWrapper.appendChild(loadingIcon);
+  loadingWrapper.appendChild(loadingCircle);
 
-  loadingScreen.appendChild(loadingWrapper)
-  return loadingScreen
-}
+  loadingScreen.appendChild(loadingWrapper);
+  return loadingScreen;
+};
